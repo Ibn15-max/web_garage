@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="desain web dasar oleh ibnu.">
+    <title>Desain Web Dasar - PT. Garage17</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> 
+    <style> 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        header {
+            background-color: #000;
+            padding: 20px 0;
+            text-align: center;
+            color: white;
+        }
+        nav { 
+            background-color: #605454;
+            padding: 10px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #002aff;
+        }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+        }
+        @media (max-width: 760px) {
+            .nav-toggle {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background-color: #605454;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 10px 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links a {
+                margin: 10px 0;
+            }
+        }
+        .hero {
+            background: url(FtoG.jpg) no-repeat center center/cover;
+            text-align: center;
+            min-height: 700px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #001eff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #0014c8;
+            transform: translateY(-2px);
+        }
+        .services {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .service {
+            flex: 1 1 calc(33.333% - 20px);
+            background-color: #000;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 30, 255, 0.3);
+            text-align: center;
+            border-radius: 10px;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 30, 255, 0.5);
+        }
+        @media (max-width: 768px) {
+            .service {
+                flex: 1 1 100%;
+            }
+        }
+        .booking {
+            padding: 50px 20px;
+            background-color: #f9f9f9;
+        }
+        .booking h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .booking-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        .form-row .form-group {
+            flex: 1;
+        }
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+        .booking label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .booking input, .booking textarea, .booking select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .booking input:focus, .booking textarea:focus, .booking select:focus {
+            outline: none;
+            border-color: #001eff;
+            box-shadow: 0 0 5px rgba(0, 30, 255, 0.3);
+        }
+        .contact {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .contact form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .contact label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            text-align: left;
+        }
+        .contact input, .contact textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .contact input:focus, .contact textarea:focus {
+            outline: none;
+            border-color: #001eff;
+            box-shadow: 0 0 5px rgba(0, 30, 255, 0.3);
+        }
+        .contact button, .booking button {
+            padding: 12px;
+            background-color: #001eff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .contact button:hover, .booking button:hover {
+            background-color: #0014c8;
+            transform: translateY(-2px);
+        }
+        .success-message {
+            display: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        footer {
+            background-color: #001eff;
+            padding: 20px 0;
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+        }
+        small {
+            display: block;
+            margin-bottom: 10px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Desain Web Dasar</h1>
+    </header>
+    <nav>
+        <button class="nav-toggle" aria-label="Toggle navigation menu">☰</button>
+        <div class="nav-links">
+            <a href="#Home">Home</a>
+            <a href="#layanan">Layanan</a>
+            <a href="#booking">Booking</a>
+            <a href="#kontak">Kontak</a>
+        </div>
+    </nav>
+
+    <main>
+        <section id="Home" class="hero">
+            <div class="hero-content">
+                <h1>Selamat Datang di Bengkel Kami</h1>
+                <a href="#booking" class="cta-button">Booking Sekarang</a>
+            </div>
+        </section>
+
+        <section id="layanan">
+            <h2 style="text-align: center; margin: 20px 0;">Layanan Kami</h2>
+            <div class="services">
+                <div class="service">
+                    <h3>Bengkel</h3>
+                    <p>Tune-up</p>
+                    <p>Servis Berkala</p>
+                    <p>Balancing dan Spooring</p>
+                    <p>Tambal Ban untuk kendaraan Anda</p>
+                </div>
+                <div class="service">
+                    <h3>Pengobatan</h3>
+                    <p>Therapy Psikologis</p>
+                    <p>Therapy Humanistik</p>
+                    <p>Therapy Musik untuk relaksasi</p>
+                    <p>Therapy Ikan untuk terapi alternatif</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="booking" class="booking">
+            <h2>Booking Layanan</h2>
+            <form class="booking-form" id="bookingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bookingName">Nama Lengkap*</label>
+                        <input type="text" id="bookingName" name="bookingName" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bookingEmail">Email*</label>
+                        <input type="email" id="bookingEmail" name="bookingEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingService">Pilih Layanan*</label>
+                        <select id="bookingService" name="bookingService" required>
+                            <option value="">-- Pilih Layanan --</option>
+                            <option value="Bengkel">Bengkel</option>
+                            <option value="therapy-musik">Therapy Musik</option>
+                            <option value="therapy-ikan">Therapy Ikan</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="bookingNotes">Catatan Tambahan</label>
+                    <textarea id="bookingNotes" name="bookingNotes" rows="4" placeholder="Jelaskan kebutuhan atau pertanyaan Anda..."></textarea>
+                </div>
+
+                <button type="submit">Kirim Booking</button>
+                <div class="success-message" id="bookingSuccess">
+                    Booking berhasil dikirim! Kami akan menghubungi Anda segera.
+                </div>
+            </form>
+        </section>
+
+        <section id="kontak" class="contact">
+            <h2>Hubungi Kami</h2>
+            <form id="contactForm">
+                <label for="name">Nama:</label>
+                <input type="text" id="name" name="name" required>
+                <small>Masukkan nama lengkap Anda.</small>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <small>Kami akan menghubungi lewat email ini.</small>
+
+                <label for="message">Pesan:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <small>Jelaskan kebutuhan Anda secara detail.</small>
+
+                <button type="submit">Kirim</button>
+                <div class="success-message" id="contactSuccess">
+                    Pesan berhasil dikirim! Terima kasih telah menghubungi kami.
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 PT. Garage17.</p>
+    </footer>
+
+    <script>
+        // Toggle menu mobile
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Tutup menu saat link diklik
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+
+        // Handle booking form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            console.log('Booking Data:', data);
+            
+            // Tampilkan pesan sukses
+            document.getElementById('bookingSuccess').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Handle contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            console.log('Contact Data:', data);
+            
+            // Tampilkan pesan sukses
+            document.getElementById('contactSuccess').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            
+            // Sembunyikan pesan setelah 5 detik
+            setTimeout(() => {
+                document.getElementById('contactSuccess').style.display = 'none';
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
